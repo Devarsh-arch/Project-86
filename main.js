@@ -1,100 +1,21 @@
-canvas= document.getElementById("myCanvas");
-ctx= canvas.getContext("2d");
+var canvas = new fabric.Canvas('myCanvas');
+ var x= document.getElementById("myAudio");
 
-greencar_width= 75;
-greencar_height= 100;
-
-
-background_image = "parkingLot.jpg";
-greencar_image = "car2.png";
-
-greencar_x= 5;
-greencar_y= 225;
-
-function add() {
-	background_imgTag= new Image();
-	background_imgTag.onload= uploadBackground;
-	background_imgTag= background_image;
-
-	greencar_imgTag= new Image();
-	greencar_imgTag.onload= uploadgreencar;
-	greencar_imgTag= greencar_image;
-}
-
-function uploadBackground(){
-	ctx.drawImage(background_imgTag, 0, 0, canvas.width, canvas.height);
-}
-
-function uploadgreencar() {
-	ctx.drawImage(greencar_imgTag, greencar_x, greencar_y, greencar_width, greencar_height);	
-}
-
-
-window.addEventListener("keydown", my_keydown);
-
-function my_keydown(e)
+function new_image()
 {
-	keyPressed = e.keyCode;
-	console.log(keyPressed);
-		if(keyPressed == '38')
-		{
-			up();
-			console.log("up");
-		}
-	
-		if(keyPressed == '40')
-		{
-			down();
-			console.log("down");
-		}
-		
-		if(keyPressed == '37')
-		{
-			left();
-			console.log("left");
-		}
-	
-		if(keyPressed == '39')
-		{
-			right();
-			console.log("right");
-		}
-		
-		
+    fabric.Image.fromURL('BirthdayImage.jpg', function(Img){
+        block_image_object= Img;
+
+        block_image_object.scaleToWidth(700);
+        block_image_object.scaleToHeight(510);
+        block_image_object.set({
+            top:0,
+            left:0
+        });
+        canvas.add(block_image_object);
+    })	
 }
 
-function up(){
-	if(greencar_y >=0){
-		greencar_y= greencar_y - 10;
-		console.log("When Up Arrow Is Pressed, x  = " + greencar_x + " | y = " + greencar_y);
-		uploadBackground();
-		uploadgreencar();
-	}
-}
-
-function down(){
-	if(greencar_y <=500){
-		greencar_y= greencar_y + 10;
-		console.log("When Up Arrow Is Pressed, x  = " + greencar_x + " | y = " + greencar_y);
-		uploadBackground();
-		uploadgreencar();
-	}
-}
-
-function left(){
-	if(greencar_x >=0){
-		greencar_x= greencar_x - 10;
-		console.log("When Up Arrow Is Pressed, x  = " + greencar_x + " | y = " + greencar_y);
-		uploadBackground();
-		uploadgreencar();
-	}
-}
-
-function right(){
-	if(greencar_x <=800){
-		greencar_x= greencar_x + 10;
-		console.log("When Up Arrow Is Pressed, x  = " + greencar_x + " | y = " + greencar_y);
-		uploadBackground();
-		uploadgreencar();
-	}
+function playSound(){
+    x.play();	
 }
